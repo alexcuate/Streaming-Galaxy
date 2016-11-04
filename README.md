@@ -1,4 +1,4 @@
-# Streaming-Gallaxy
+# Streaming-Galaxy
 
 ## Introduction
 This is a small system to get recommendations on movies based on a movies
