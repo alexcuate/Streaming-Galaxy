@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 
 namespace GalaxyDB.GraphGenerator.Graph
 {
-    public class Node
+    public class Node<T>
     {
+        public T Data { get; set; }
+        public List<Node<T>> AdjList { get; set; }
     }
 }
