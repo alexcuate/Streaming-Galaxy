@@ -5,7 +5,7 @@ namespace GalaxyDB.Generics.Lists
 {
     public class LinkedListNode<T>
     {
-        public T Value { get; set; }
-        public LinkedListNode<T> NextNode { get; set; }
+        public LinkedListNode<T> Next;
+        public T Value;
     }
 }
