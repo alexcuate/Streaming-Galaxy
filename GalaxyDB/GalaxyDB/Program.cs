@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using GalaxyDB.HashBuilder;
-using GalaxyDB.Generics;
+using DataStructures.Lists;
 
 namespace GalaxyDB
 {
@@ -11,19 +11,21 @@ namespace GalaxyDB
     {
         public static void Main(string[] args)
         {
-            var list = new List<int>();
-            list.Add(5);
-            Console.WriteLine(list.ToString());
-            list.Add(6);
-            Console.WriteLine(list.ToString());
-            list.Remove();
-            Console.WriteLine(list.ToString());
-            list.AddFirst(8);
-            Console.WriteLine(list.ToString());
-            list.AddFirst(9);
-            Console.WriteLine(list.ToString());
+            var db = new Builder();
+            var tags = new SLinkedList<string>();
+            tags.Append("Duro");
+            tags.Append("Matar");
 
-            Console.ReadLine();
+            db.AddMovie(new Common.Movie
+            {
+                Category = "Action",
+                Name = "Duro de matar",
+                Tags = tags
+            });
+
+            db.SaveDB();
+
+            db.GetDB();
         }
     }
 }

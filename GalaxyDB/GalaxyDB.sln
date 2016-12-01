@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "GalaxyDB", "GalaxyDB\GalaxyDB.xproj", "{8A38D8A2-1072-4BF9-B7B8-DF648BB08F74}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DataStructures", "DataStructures\DataStructures.xproj", "{4052D0D4-5843-46C1-ACF0-41A03ABA5E05}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{8A38D8A2-1072-4BF9-B7B8-DF648BB08F74}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A38D8A2-1072-4BF9-B7B8-DF648BB08F74}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A38D8A2-1072-4BF9-B7B8-DF648BB08F74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4052D0D4-5843-46C1-ACF0-41A03ABA5E05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4052D0D4-5843-46C1-ACF0-41A03ABA5E05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4052D0D4-5843-46C1-ACF0-41A03ABA5E05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4052D0D4-5843-46C1-ACF0-41A03ABA5E05}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

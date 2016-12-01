@@ -1,22 +1,50 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.IO;
+using System.Linq;
 using Newtonsoft.Json;
+
+using DataStructures.Dictionaries;
+using DataStructures.Graphs;
+
+using GalaxyDB.Common;
 
 namespace GalaxyDB.HashBuilder
 {
     public class Builder
     {
         private static readonly string fileName = ".\\DB.json";
-        private static Dictionary<string, object> CategoryHash = new Dictionary<string, object>();
+        private static ChainedHashTable<string, UndirectedSparseGraph<MovieNode>> graphs = new ChainedHashTable<string, UndirectedSparseGraph<MovieNode>>();
 
-        public void AddCategory(string category)
+        public void AddMovie(Movie movie)
+        {
+            if (graphs.ContainsKey(movie.Category))
+            {
+                var graph = graphs[movie.Category];
+                var newNode = movie.GetNode();
+                graph.AddVertex(newNode);
+                var nodes = graph.BreadthFirstWalk();
+                foreach (var node in nodes)
+                {
+                    var resultingTags = newNode.Tags.Intersect(node.Tags);
+                    if(resultingTags.Count() > 0)
+                    {
+                        graph.AddEdge(newNode, node);
+                    }
+                }
+            }
+            else
+            {
+                var graph = new UndirectedSparseGraph<MovieNode>();
+                graph.AddVertex(movie.GetNode());
+                graphs.Add(movie.Category, graph);
+            }
+        }
+
+        private void AddCategory(string category)
         {
             try
             {
-                CategoryHash.Add(category, new object());
+                graphs.Add(category, new UndirectedSparseGraph<MovieNode>());
             }
             catch (Exception ex)
             {
@@ -24,11 +52,11 @@ namespace GalaxyDB.HashBuilder
             }
         }
 
-        public void DeleteCategory(string category)
+        private void DeleteCategory(string category)
         {
             try
             {
-                CategoryHash.Remove(category);
+                graphs.Remove(category);
             }
             catch (Exception ex)
             {
@@ -41,7 +69,7 @@ namespace GalaxyDB.HashBuilder
             try
             {
                 var json = File.ReadAllText(fileName);
-                CategoryHash = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
+                graphs = JsonConvert.DeserializeObject<ChainedHashTable<string, UndirectedSparseGraph<MovieNode>>>(json);
                 return true;
             }
             catch(Exception ex)
@@ -55,7 +83,7 @@ namespace GalaxyDB.HashBuilder
         {
             try
             {
-                var jsonOfHash = JsonConvert.SerializeObject(CategoryHash);
+                var jsonOfHash = JsonConvert.SerializeObject(graphs);
                 File.WriteAllText(fileName, jsonOfHash);
                 return true;
             }
