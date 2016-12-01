@@ -13,7 +13,7 @@ namespace GalaxyDB.HashBuilder
     {
         private static ChainedHashTable<string, UndirectedSparseGraph<MovieNode>> graphs = new ChainedHashTable<string, UndirectedSparseGraph<MovieNode>>();
 
-        public bool Remove(Movie movie)
+        public bool RemoveMovie(Movie movie)
         {
             if (graphs.ContainsKey(movie.Category))
             {
