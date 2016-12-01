@@ -11,7 +11,6 @@ namespace GalaxyDB.HashBuilder
 {
     public class Builder
     {
-        private static readonly string fileName = ".\\DB.json";
         private static ChainedHashTable<string, UndirectedSparseGraph<MovieNode>> graphs = new ChainedHashTable<string, UndirectedSparseGraph<MovieNode>>();
 
         public void AddMovie(Movie movie)
