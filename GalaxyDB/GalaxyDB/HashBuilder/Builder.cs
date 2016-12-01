@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using Newtonsoft.Json;
 
 using DataStructures.Dictionaries;
 using DataStructures.Graphs;
@@ -61,36 +60,6 @@ namespace GalaxyDB.HashBuilder
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-            }
-        }
-
-        public bool GetDB()
-        {
-            try
-            {
-                var json = File.ReadAllText(fileName);
-                graphs = JsonConvert.DeserializeObject<ChainedHashTable<string, UndirectedSparseGraph<MovieNode>>>(json);
-                return true;
-            }
-            catch(Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                return false;
-            }
-        }
-
-        public bool SaveDB()
-        {
-            try
-            {
-                var jsonOfHash = JsonConvert.SerializeObject(graphs);
-                File.WriteAllText(fileName, jsonOfHash);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                return false;
             }
         }
     }
