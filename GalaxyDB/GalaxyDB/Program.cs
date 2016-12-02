@@ -22,10 +22,34 @@ namespace GalaxyDB
                 Name = "Duro de matar",
                 Tags = tags
             });
+			var tags2 = new SLinkedList<string>();
+			tags2.Append("Agentes");
+			tags2.Append("Matar");
 
-            db.SaveDB();
+			db.AddMovie(new Common.Movie
+				{
+					Category = "Action",
+					Name = "007",
+					Tags = tags2
+				});
+			var tags3 = new SLinkedList<string>();
+			tags3.Append("Agentes");
+			tags3.Append("Matar");
 
-            db.GetDB();
+			db.AddMovie(new Common.Movie
+				{
+					Category = "Action",
+					Name = "Mision Imposible",
+					Tags = tags3
+				});	
+
+			db.Recomendacion ("Action","007",1);
+
+	
+
+            //db.SaveDB();
+
+            //db.GetDB();
         }
     }
 }
