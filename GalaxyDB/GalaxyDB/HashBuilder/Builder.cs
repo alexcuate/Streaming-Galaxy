@@ -13,7 +13,9 @@ namespace GalaxyDB.HashBuilder
     {
         private static ChainedHashTable<string, UndirectedSparseGraph<MovieNode>> graphs = new ChainedHashTable<string, UndirectedSparseGraph<MovieNode>>();
 
-        public bool RemoveMovie(Movie movie)
+
+
+		public bool RemoveMovie(Movie movie)
         {
             if (graphs.ContainsKey(movie.Category))
             {
@@ -71,6 +73,26 @@ namespace GalaxyDB.HashBuilder
             }
         }
 
+		public void Recomendacion(String categoria,String movie,int precision)
+		{
+			var graph = graphs[categoria];
+			var nodes = graph.BreadthFirstWalk();
+
+			foreach (var node in nodes) {
+				if(node.Name.Equals(movie)){
+					Console.WriteLine ("Si hay una nodo " + movie);
+					foreach (var node2 in nodes) {
+						var resultingTags = node.Tags.Intersect(node2.Tags);
+						if(resultingTags.Count()>=precision){
+							Console.WriteLine ("Esta Pelicula te podria gustar: "+ node2.Name);
+						}
+
+					}
+
+				}
+			}
+		}
+
         private void AddCategory(string category)
         {
             try
@@ -94,5 +116,7 @@ namespace GalaxyDB.HashBuilder
                 Console.WriteLine(ex.Message);
             }
         }
+
+
     }
 }
